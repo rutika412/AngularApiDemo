@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrainingHouseModelStoreContainer" CdmEntityContainer="TrainingHouseEntities">
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="TrainingHouseModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="SeatsCount" ColumnName="SeatsCount" />
+          <ScalarProperty Name="Trainer_Id" ColumnName="Trainer Id" />
+          <ScalarProperty Name="Course_Date" ColumnName="Course Date" />
+          <ScalarProperty Name="Course_Name" ColumnName="Course Name" />
+          <ScalarProperty Name="Course_Description" ColumnName="Course Description" />
+          <ScalarProperty Name="Course_Id" ColumnName="Course Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trainers">
+      <EntityTypeMapping TypeName="TrainingHouseModel.Trainer">
+        <MappingFragment StoreEntitySet="Trainer">
+          <ScalarProperty Name="Trainer_Name" ColumnName="Trainer Name" />
+          <ScalarProperty Name="Trainer_Id" ColumnName="Trainer Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

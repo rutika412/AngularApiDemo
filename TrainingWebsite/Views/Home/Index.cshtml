@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html ng-app ="trainingHouseApp" ng-controller="CourseController">
+<head>
+    <title> Training House</title>
+</head>
+<body>
+
+    <h1>{{ details }}</h1>
+
+
+    @Scripts.Render("~/Scripts/lib/angular.min.js")
+    @Scripts.Render("~/Scripts/TrainingHouse.js")
+    @Scripts.Render("~/Scripts/Controllers/CourseController.js")
+    @Scripts.Render("~/Scripts/Factories/CourseService.js")
+
+
+    @*@Scripts.Render("~/bundle/angularapp")*@
+</body>
+</html>

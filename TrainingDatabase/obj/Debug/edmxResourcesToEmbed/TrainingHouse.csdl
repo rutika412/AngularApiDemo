@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrainingHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TrainingHouseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="TrainingHouseModel.Course" />
+    <EntitySet Name="Trainers" EntityType="TrainingHouseModel.Trainer" />
+    <AssociationSet Name="FK_Course_Trainer" Association="TrainingHouseModel.FK_Course_Trainer">
+      <End Role="Trainer" EntitySet="Trainers" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Course_Id" />
+    </Key>
+    <Property Name="Course_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Course_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Course_Date" Type="DateTime" Precision="3" />
+    <Property Name="Trainer_Id" Type="Int32" Nullable="false" />
+    <Property Name="SeatsCount" Type="Int32" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="IsFullDay" Type="Boolean" />
+    <NavigationProperty Name="Trainer" Relationship="TrainingHouseModel.FK_Course_Trainer" FromRole="Course" ToRole="Trainer" />
+  </EntityType>
+  <EntityType Name="Trainer">
+    <Key>
+      <PropertyRef Name="Trainer_Id" />
+    </Key>
+    <Property Name="Trainer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Trainer_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Courses" Relationship="TrainingHouseModel.FK_Course_Trainer" FromRole="Trainer" ToRole="Course" />
+  </EntityType>
+  <Association Name="FK_Course_Trainer">
+    <End Type="TrainingHouseModel.Trainer" Role="Trainer" Multiplicity="1" />
+    <End Type="TrainingHouseModel.Course" Role="Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="Trainer_Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Trainer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

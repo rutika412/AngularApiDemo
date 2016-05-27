@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrainingHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Course Id" />
+    </Key>
+    <Property Name="Course Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course Description" Type="nvarchar(max)" />
+    <Property Name="Course Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Course Date" Type="datetime" />
+    <Property Name="Trainer Id" Type="int" Nullable="false" />
+    <Property Name="SeatsCount" Type="int" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+    <Property Name="IsFullDay" Type="bit" />
+  </EntityType>
+  <EntityType Name="Trainer">
+    <Key>
+      <PropertyRef Name="Trainer Id" />
+    </Key>
+    <Property Name="Trainer Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Trainer Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Course_Trainer">
+    <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="Trainer Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Trainer Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TrainingHouseModelStoreContainer">
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Course_Trainer" Association="Self.FK_Course_Trainer">
+      <End Role="Trainer" EntitySet="Trainer" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

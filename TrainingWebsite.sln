@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingWebsite", "TrainingWebsite\TrainingWebsite.csproj", "{ACD810D9-682A-45C4-A8C8-BF27EDE60921}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingDatabase", "TrainingDatabase\TrainingDatabase.csproj", "{87DD9DE9-D864-4626-8D07-1B08D78BBAED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACD810D9-682A-45C4-A8C8-BF27EDE60921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD810D9-682A-45C4-A8C8-BF27EDE60921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD810D9-682A-45C4-A8C8-BF27EDE60921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD810D9-682A-45C4-A8C8-BF27EDE60921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DD9DE9-D864-4626-8D07-1B08D78BBAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DD9DE9-D864-4626-8D07-1B08D78BBAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DD9DE9-D864-4626-8D07-1B08D78BBAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DD9DE9-D864-4626-8D07-1B08D78BBAED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

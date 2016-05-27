@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TrainingHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Course Id" />
+          </Key>
+          <Property Name="Course Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Course Description" Type="nvarchar(max)" />
+          <Property Name="Course Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Course Date" Type="datetime" />
+          <Property Name="Trainer Id" Type="int" Nullable="false" />
+          <Property Name="SeatsCount" Type="int" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="IsFullDay" Type="bit" />
+        </EntityType>
+        <EntityType Name="Trainer">
+          <Key>
+            <PropertyRef Name="Trainer Id" />
+          </Key>
+          <Property Name="Trainer Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Trainer Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Course_Trainer">
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="Trainer Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Trainer Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrainingHouseModelStoreContainer">
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Course_Trainer" Association="Self.FK_Course_Trainer">
+            <End Role="Trainer" EntitySet="Trainer" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrainingHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TrainingHouseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Courses" EntityType="TrainingHouseModel.Course" />
+          <EntitySet Name="Trainers" EntityType="TrainingHouseModel.Trainer" />
+          <AssociationSet Name="FK_Course_Trainer" Association="TrainingHouseModel.FK_Course_Trainer">
+            <End Role="Trainer" EntitySet="Trainers" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Course_Id" />
+          </Key>
+          <Property Name="Course_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Course_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Course_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Course_Date" Type="DateTime" Precision="3" />
+          <Property Name="Trainer_Id" Type="Int32" Nullable="false" />
+          <Property Name="SeatsCount" Type="Int32" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="IsFullDay" Type="Boolean" />
+          <NavigationProperty Name="Trainer" Relationship="TrainingHouseModel.FK_Course_Trainer" FromRole="Course" ToRole="Trainer" />
+        </EntityType>
+        <EntityType Name="Trainer">
+          <Key>
+            <PropertyRef Name="Trainer_Id" />
+          </Key>
+          <Property Name="Trainer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Trainer_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Courses" Relationship="TrainingHouseModel.FK_Course_Trainer" FromRole="Trainer" ToRole="Course" />
+        </EntityType>
+        <Association Name="FK_Course_Trainer">
+          <End Type="TrainingHouseModel.Trainer" Role="Trainer" Multiplicity="1" />
+          <End Type="TrainingHouseModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="Trainer_Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Trainer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TrainingHouseModelStoreContainer" CdmEntityContainer="TrainingHouseEntities">
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="TrainingHouseModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="IsFullDay" ColumnName="IsFullDay" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="SeatsCount" ColumnName="SeatsCount" />
+                <ScalarProperty Name="Trainer_Id" ColumnName="Trainer Id" />
+                <ScalarProperty Name="Course_Date" ColumnName="Course Date" />
+                <ScalarProperty Name="Course_Name" ColumnName="Course Name" />
+                <ScalarProperty Name="Course_Description" ColumnName="Course Description" />
+                <ScalarProperty Name="Course_Id" ColumnName="Course Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainers">
+            <EntityTypeMapping TypeName="TrainingHouseModel.Trainer">
+              <MappingFragment StoreEntitySet="Trainer">
+                <ScalarProperty Name="Trainer_Name" ColumnName="Trainer Name" />
+                <ScalarProperty Name="Trainer_Id" ColumnName="Trainer Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

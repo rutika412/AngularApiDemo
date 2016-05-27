@@ -1,0 +1,1 @@
+﻿var trainingHouseApp = angular.module('trainingHouseApp', []);
